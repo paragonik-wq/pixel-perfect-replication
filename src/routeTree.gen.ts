@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LogowanieRouteImport } from './routes/logowanie'
 import { Route as AuthenticatedDodajRouteImport } from './routes/_authenticated/dodaj'
+import { Route as AuthenticatedSkanujRouteImport } from './routes/_authenticated/skanuj'
 import { Route as AuthenticatedZakupyRouteImport } from './routes/_authenticated/zakupy'
 import { Route as AuthenticatedZakupIdRouteImport } from './routes/_authenticated/zakup.$id'
 
@@ -35,6 +36,11 @@ const AuthenticatedDodajRoute = AuthenticatedDodajRouteImport.update({
   path: '/dodaj',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSkanujRoute = AuthenticatedSkanujRouteImport.update({
+  id: '/skanuj',
+  path: '/skanuj',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedZakupyRoute = AuthenticatedZakupyRouteImport.update({
   id: '/zakupy',
   path: '/zakupy',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/logowanie': typeof LogowanieRoute
   '/dodaj': typeof AuthenticatedDodajRoute
+  '/skanuj': typeof AuthenticatedSkanujRoute
   '/zakupy': typeof AuthenticatedZakupyRoute
   '/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/logowanie': typeof LogowanieRoute
   '/dodaj': typeof AuthenticatedDodajRoute
+  '/skanuj': typeof AuthenticatedSkanujRoute
   '/zakupy': typeof AuthenticatedZakupyRoute
   '/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
@@ -66,20 +74,23 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/logowanie': typeof LogowanieRoute
   '/_authenticated/dodaj': typeof AuthenticatedDodajRoute
+  '/_authenticated/skanuj': typeof AuthenticatedSkanujRoute
   '/_authenticated/zakupy': typeof AuthenticatedZakupyRoute
   '/_authenticated/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/logowanie' | '/dodaj' | '/zakupy' | '/zakup/$id'
+  fullPaths:
+    '/' | '/logowanie' | '/dodaj' | '/skanuj' | '/zakupy' | '/zakup/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/logowanie' | '/dodaj' | '/zakupy' | '/zakup/$id'
+  to: '/' | '/logowanie' | '/dodaj' | '/skanuj' | '/zakupy' | '/zakup/$id'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/logowanie'
     | '/_authenticated/dodaj'
+    | '/_authenticated/skanuj'
     | '/_authenticated/zakupy'
     | '/_authenticated/zakup/$id'
   fileRoutesById: FileRoutesById
@@ -120,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDodajRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/skanuj': {
+      id: '/_authenticated/skanuj'
+      path: '/skanuj'
+      fullPath: '/skanuj'
+      preLoaderRoute: typeof AuthenticatedSkanujRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/zakupy': {
       id: '/_authenticated/zakupy'
       path: '/zakupy'
@@ -139,12 +157,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDodajRoute: typeof AuthenticatedDodajRoute
+  AuthenticatedSkanujRoute: typeof AuthenticatedSkanujRoute
   AuthenticatedZakupyRoute: typeof AuthenticatedZakupyRoute
   AuthenticatedZakupIdRoute: typeof AuthenticatedZakupIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDodajRoute: AuthenticatedDodajRoute,
+  AuthenticatedSkanujRoute: AuthenticatedSkanujRoute,
   AuthenticatedZakupyRoute: AuthenticatedZakupyRoute,
   AuthenticatedZakupIdRoute: AuthenticatedZakupIdRoute,
 }

@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Camera, ChevronRight, LogOut, Search, ShieldCheck, TriangleAlert } from "lucide-react";
+import { ChevronRight, LogOut, Search, ShieldCheck, TriangleAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   dniDo,
@@ -11,6 +11,7 @@ import {
   odmianaDni,
   odmianaMiesiecy,
 } from "@/lib/paragonik";
+import { PrzyciskiSkanowania } from "@/components/PrzyciskiSkanowania";
 
 export const Route = createFileRoute("/_authenticated/zakupy")({
   head: () => ({
@@ -95,7 +96,7 @@ function Zakupy() {
   }
 
   return (
-    <main className="min-h-screen pb-32 pt-8">
+    <main className="min-h-screen pb-48 pt-8">
       <div className="app-shell">
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -173,13 +174,7 @@ function Zakupy() {
 
       <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/95 py-4 backdrop-blur">
         <div className="app-shell">
-          <Link
-            to="/dodaj"
-            className="flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-primary px-6 text-lg font-bold text-primary-foreground"
-          >
-            <Camera className="h-6 w-6" strokeWidth={2} />
-            Zeskanuj paragon
-          </Link>
+          <PrzyciskiSkanowania />
         </div>
       </div>
     </main>

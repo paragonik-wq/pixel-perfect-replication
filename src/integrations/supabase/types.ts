@@ -83,6 +83,24 @@ export type Database = {
         }
         Relationships: []
       }
+      scan_usage: {
+        Row: {
+          count: number
+          month: string
+          user_id: string
+        }
+        Insert: {
+          count?: number
+          month: string
+          user_id: string
+        }
+        Update: {
+          count?: number
+          month?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
