@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Camera, ChevronRight, LogOut, Search, ShieldCheck, TriangleAlert } from "lucide-react";
+import { ChevronRight, LogOut, Search, ShieldCheck, TriangleAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   dniDo,
@@ -96,7 +96,7 @@ function Zakupy() {
   }
 
   return (
-    <main className="min-h-screen pb-32 pt-8">
+    <main className="min-h-screen pb-48 pt-8">
       <div className="app-shell">
         <div className="flex items-start justify-between gap-4">
           <div>
