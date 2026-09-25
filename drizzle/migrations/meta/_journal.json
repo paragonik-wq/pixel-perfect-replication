@@ -8,6 +8,13 @@
       "when": 1790366689326,
       "tag": "0000_paragonik_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790367529130,
+      "tag": "0001_scan_usage",
+      "breakpoints": true
     }
   ]
 }
