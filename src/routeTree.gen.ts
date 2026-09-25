@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as LogowanieRouteImport } from './routes/logowanie'
 import { Route as AuthenticatedDodajRouteImport } from './routes/_authenticated/dodaj'
 import { Route as AuthenticatedZakupyRouteImport } from './routes/_authenticated/zakupy'
+import { Route as AuthenticatedZakupIdRouteImport } from './routes/_authenticated/zakup.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -39,18 +40,25 @@ const AuthenticatedZakupyRoute = AuthenticatedZakupyRouteImport.update({
   path: '/zakupy',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedZakupIdRoute = AuthenticatedZakupIdRouteImport.update({
+  id: '/zakup/$id',
+  path: '/zakup/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/logowanie': typeof LogowanieRoute
   '/dodaj': typeof AuthenticatedDodajRoute
   '/zakupy': typeof AuthenticatedZakupyRoute
+  '/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/logowanie': typeof LogowanieRoute
   '/dodaj': typeof AuthenticatedDodajRoute
   '/zakupy': typeof AuthenticatedZakupyRoute
+  '/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -59,12 +67,13 @@ export interface FileRoutesById {
   '/logowanie': typeof LogowanieRoute
   '/_authenticated/dodaj': typeof AuthenticatedDodajRoute
   '/_authenticated/zakupy': typeof AuthenticatedZakupyRoute
+  '/_authenticated/zakup/$id': typeof AuthenticatedZakupIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/logowanie' | '/dodaj' | '/zakupy'
+  fullPaths: '/' | '/logowanie' | '/dodaj' | '/zakupy' | '/zakup/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/logowanie' | '/dodaj' | '/zakupy'
+  to: '/' | '/logowanie' | '/dodaj' | '/zakupy' | '/zakup/$id'
   id:
     | '__root__'
     | '/'
@@ -72,6 +81,7 @@ export interface FileRouteTypes {
     | '/logowanie'
     | '/_authenticated/dodaj'
     | '/_authenticated/zakupy'
+    | '/_authenticated/zakup/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,17 +127,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedZakupyRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/zakup/$id': {
+      id: '/_authenticated/zakup/$id'
+      path: '/zakup/$id'
+      fullPath: '/zakup/$id'
+      preLoaderRoute: typeof AuthenticatedZakupIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDodajRoute: typeof AuthenticatedDodajRoute
   AuthenticatedZakupyRoute: typeof AuthenticatedZakupyRoute
+  AuthenticatedZakupIdRoute: typeof AuthenticatedZakupIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDodajRoute: AuthenticatedDodajRoute,
   AuthenticatedZakupyRoute: AuthenticatedZakupyRoute,
+  AuthenticatedZakupIdRoute: AuthenticatedZakupIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
