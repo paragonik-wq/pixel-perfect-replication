@@ -11,6 +11,7 @@ import {
   odmianaDni,
   odmianaMiesiecy,
 } from "@/lib/paragonik";
+import { PrzyciskiSkanowania } from "@/components/PrzyciskiSkanowania";
 
 export const Route = createFileRoute("/_authenticated/zakupy")({
   head: () => ({
@@ -173,13 +174,7 @@ function Zakupy() {
 
       <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/95 py-4 backdrop-blur">
         <div className="app-shell">
-          <Link
-            to="/dodaj"
-            className="flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-primary px-6 text-lg font-bold text-primary-foreground"
-          >
-            <Camera className="h-6 w-6" strokeWidth={2} />
-            Zeskanuj paragon
-          </Link>
+          <PrzyciskiSkanowania />
         </div>
       </div>
     </main>
